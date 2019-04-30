@@ -155,18 +155,18 @@ function readEtat($_FILE) {
         $_LIBELLE=str_pad(substr($_BUFFER[$_LINE_NUM+11],0,20),20," ");  
       }
 	$_TOT_TVA+=$_TVA; 
-     $_TOT_TTC+=$_TTC;
+      $_TOT_TTC+=$_TTC;
 
-     fwrite(STDERR, str_pad(substr($_COUNT,0,5),5," ")." ".$_DFAC." ".
+      fwrite(STDERR, str_pad(substr($_COUNT,0,5),5," ")." ".$_DFAC." ".
       str_pad(substr($_FRS["$_TIERS"]["NOM"],0,20),20," ")." ".
       str_pad(substr($_NUM,0,10),10," ")." ".substr($_JRN,0,3)." ".
       str_pad(number_format( $_TTC, 2, ',', ' ' ), 10, ' ', STR_PAD_LEFT)." ".
       str_pad(number_format( $_TVA, 2, ',', ' ' ), 10, ' ', STR_PAD_LEFT)." ".
       str_pad(number_format( $_HT,  2, ',', ' ' ), 10, ' ', STR_PAD_LEFT)." ".
       str_pad(substr($_REG,0,10),10," ")." ".$_MP." ".$_DPAI."\n"
-     );
-     $_DIFF=$_TTC-$_HT-$_TVA;
-     if(abs($_DIFF) > 0.001)
+      );
+      $_DIFF=$_TTC-$_HT-$_TVA;
+      if(abs($_DIFF) > 0.001)
           fwrite(STDERR, $_NUM."\t".$_TTC."\t".$_TVA."\t".$_HT."\t #".$_DIFF."\n");
       
      echo  "\t\t<rd>\n";
@@ -191,11 +191,3 @@ readEtat($_ETAT_FILE);
 fwrite(STDERR, $_COUNT. " Factures traitess \n");
 fwrite(STDERR,"Totaux : HT:".number_format($_TOT_HT,2,"."," ")."\tTVA:".number_format($_TOT_TVA,2,"."," ")."\tTTC:".number_format($_TOT_TTC,2,"."," ")."\n");
 ?>
-/*
-$myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
-$txt = "John Doe\n";
-fwrite($myfile, $txt);
-$txt = "Jane Doe\n";
-fwrite($myfile, $txt);
-fclose($myfile);
-*/
